@@ -1,0 +1,179 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    color: #1f2937;
+
+    background: #f9fafb;
+}
+
+
+/* NAVBAR */
+
+nav {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background: #111827;
+}
+
+.logo {
+    color: white;
+}
+
+.links {
+    display: flex;
+
+    gap: 25px;
+}
+
+.links a {
+    color: white;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #60a5fa;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 75vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+}
+
+.hero h1 {
+    font-size:
+        clamp(2rem, 5vw, 4rem);
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+    margin-bottom: 30px;
+
+    font-size: 1.1rem;
+}
+
+.btn {
+    display: inline-block;
+
+    background: white;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+
+/* PROJECTS */
+
+.projects {
+    width: min(90%, 1200px);
+
+    margin: 60px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(250px, 1fr)
+        );
+
+    gap: 25px;
+}
+
+.card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(245, 3, 3, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+}
