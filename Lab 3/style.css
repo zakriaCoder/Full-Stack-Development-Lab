@@ -1,0 +1,16 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+body { min-height: 100vh; background: #f4f7fb; display: flex; justify-content: center; padding: 40px 20px; }
+.todo-app { width: 100%; max-width: 420px; align-self: flex-start; background: #fff; border-radius: 10px; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.todo-app h1 { font-size: 1.5rem; }
+.input-row { display: flex; gap: 10px; margin: 15px 0; }
+#taskInput { flex: 1; min-width: 0; height: 42px; padding: 0 12px; border: 1px solid #ccc; border-radius: 6px; }
+button { cursor: pointer; }
+#addBtn { height: 42px; padding: 0 18px; border: none; border-radius: 6px; background: #4a6fdc; color: #fff; }
+.error-message { color: #e74c3c; font-size: 13px; min-height: 18px; }
+#taskList { list-style: none; margin-top: 10px; }
+#taskList li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border-bottom: 1px solid #eee; }
+#taskList li span { flex: 1; overflow-wrap: anywhere; cursor: pointer; }
+#taskList li.completed span { text-decoration: line-through; color: #999; }
+#taskList li .delete-btn { flex: 0 0 auto; background: #e74c3c; color: #fff; border: none; border-radius: 4px; padding: 6px 10px; }
+.task-count { margin-top: 15px; font-size: 13px; color: #666; text-align: right; }
+.clear-btn { display: block; margin: 14px 0 0 auto; padding: 8px 12px; border: 0; border-radius: 5px; background: #333; color: #fff; }
