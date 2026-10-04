@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 4 — JavaScript Fundamentals</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="dashboard-header">
+    <h1>Lab 4 — JavaScript Fundamentals</h1>
+    <p>CS301L-FSWD-Lab · BSCS 5C</p>
+  </header>
+
+  <main>
+<h2>Part A — Student Result Dashboard</h2>
+<p class="section-note">Warm-up 1: Bilal Ahmed changed from 45 to 55 marks. Open Console for warm-ups 2–4.</p>
+<section class="controls">
+    <input type="text" id="searchInput" placeholder="Search student by name...">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="pass">Pass</button>
+      <button class="filter-btn" data-filter="fail">Fail</button>
+    </div>
+    <button id="sortBtn">Sort by Marks</button>
+  </section>
+
+  <section class="summary" id="summary">
+    <!-- Filled in by JavaScript: calculateSummary() + renderSummary() -->
+  </section>
+
+  <section class="card-grid" id="cardGrid">
+    <!-- Filled in by JavaScript: renderCards() -->
+  </section>
+
+  <section class="bookstore">
+    <h2>Part B — Online Bookstore Order System</h2>
+    <p>Tasks 1–5: catalog, validation, batch processing, confirmations and restocking reports.</p>
+    <h3>Task 1 &amp; 4 — Book Catalog (remaining stock)</h3>
+    <div class="table-wrap"><table><thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Price</th><th>Stock</th><th>Stock Status</th></tr></thead><tbody id="catalogBody"></tbody></table></div>
+    <h3>Task 2 — Single Order Validation</h3><ul id="validationResults"></ul>
+    <h3>Task 3 — Batch Order Summary</h3>
+    <div class="table-wrap"><table><thead><tr><th>Order</th><th>Book</th><th>Quantity</th><th>Status</th><th>Reason</th><th>Revenue</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+    <p id="revenue" class="revenue" role="status"></p>
+    <h3>Task 4 — Order Confirmations</h3><ul id="confirmations"></ul>
+    <h3>Task 5 — Low-Stock Category Reports</h3><div id="stockReports"></div>
+  </section>
+  </main>
+  <footer class="dashboard-footer">
+    <p>&copy; 2026 JavaScript Fundamentals Lab</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
