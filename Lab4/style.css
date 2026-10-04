@@ -11,7 +11,7 @@ body {
   padding-bottom: 40px;
 }
 
-/* Header */
+
 .dashboard-header {
   background: linear-gradient(135deg, #4a6fdc, #8e5ff5);
   color: #fff;
@@ -24,7 +24,7 @@ body {
   margin-bottom: 8px;
 }
 
-/* Controls */
+
 .controls {
   max-width: 1000px;
   margin: 25px auto;
@@ -85,7 +85,7 @@ body {
   background: #444;
 }
 
-/* Summary */
+
 .summary {
   max-width: 1000px;
   margin: 0 auto 25px auto;
@@ -105,7 +105,7 @@ body {
   text-align: center;
 }
 
-/* Card Grid */
+
 .card-grid {
   max-width: 1000px;
   margin: 0 auto;
@@ -171,7 +171,7 @@ body {
   color: #555;
 }
 
-/* Footer */
+
 .dashboard-footer {
   text-align: center;
   margin-top: 40px;
@@ -179,7 +179,7 @@ body {
   font-size: 14px;
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
   .controls {
     flex-direction: column;

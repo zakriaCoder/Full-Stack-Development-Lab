@@ -1,36 +1,17 @@
-/* =========================================================
-   STUDENT RESULT DASHBOARD
-   Reference script for JavaScript Fundamentals (Lab 04)
-   Every major concept is labelled with a comment so it can
-   be traced back to the matching section of the lab manual.
-   ========================================================= */
 
-/* ---------------------------------------------------------
-   1. VARIABLES & SYNTAX
-   var / let / const, plus basic statement syntax.
-   --------------------------------------------------------- */
-const DASHBOARD_TITLE = "Student Result Dashboard"; // const: value never reassigned
-let currentFilter = "all";                          // let: value changes over time
+
+
+const DASHBOARD_TITLE = "Student Result Dashboard";
+let currentFilter = "all";
 let searchTerm = "";
-var sortAscending = true;                            // var: function/global scoped (shown for comparison)
+var sortAscending = true;
 
-/* ---------------------------------------------------------
-   2. HOISTING
-   var declarations are hoisted and initialised as undefined.
-   let/const are hoisted too, but stay in the "temporal dead
-   zone" until their declaration line runs.
-   --------------------------------------------------------- */
-console.log(hoistedVar); // undefined — declaration is hoisted, assignment is not
+
+console.log(hoistedVar);
 var hoistedVar = "I am hoisted";
-
-// console.log(hoistedLet); // Would throw: Cannot access 'hoistedLet' before initialization
 let hoistedLet = "I am only usable after this line";
 
-/* ---------------------------------------------------------
-   3. OBJECTS
-   Plain data as an array of objects (this is the "database"
-   for the whole dashboard).
-   --------------------------------------------------------- */
+
 const studentsData = [
   { id: 1, name: "Ayesha Khan",  subject: "Web Development", marks: 88 },
   { id: 2, name: "Bilal Ahmed",  subject: "Web Development", marks: 55 },
@@ -40,11 +21,7 @@ const studentsData = [
   { id: 6, name: "Usman Ali",    subject: "Web Development", marks: 60 },
 ];
 
-/* ---------------------------------------------------------
-   4. ES6 CLASSES
-   Wraps each plain object in a Student instance that carries
-   its own behaviour (getStatus, getGrade).
-   --------------------------------------------------------- */
+
 class Student {
   constructor(id, name, subject, marks) {
     this.id = id;
@@ -52,34 +29,24 @@ class Student {
     this.subject = subject;
     this.marks = marks;
   }
-
-  // CONDITIONS + TERNARY OPERATOR
   getStatus() {
-    return this.marks >= 50 ? "pass" : "fail"; // ternary operator
+    return this.marks >= 50 ? "pass" : "fail";
   }
-
-  // CONDITIONS: if / else if / else
   getGrade() {
-    let grade; // let: assigned according to the student's marks
+    let grade;
     if (this.marks >= 90) grade = "A";
     else if (this.marks >= 75) grade = "B";
     else if (this.marks >= 50) grade = "C";
     else grade = "F";
-    console.log(`${this.name}: grade ${grade}`); // Warm-up 2
+    console.log(`${this.name}: grade ${grade}`);
     return grade;
   }
 }
 
-/* ---------------------------------------------------------
-   5. ARRAY METHODS — map()
-   ARROW FUNCTIONS used throughout for compact syntax.
-   Converts plain objects into Student class instances.
-   --------------------------------------------------------- */
+
 let studentList = studentsData.map(
   (s) => new Student(s.id, s.name, s.subject, s.marks)
 );
-
-// Warm-ups 2–4: calculate each grade once, then report status and failures.
 console.group("Warm-ups 2–4");
 studentList.forEach((student) => { student.grade = student.getGrade(); });
 for (const student of studentList) {
@@ -90,11 +57,7 @@ console.log("Failed students:", failedStudents);
 console.log("Failed names:", failedStudents.map((student) => student.name));
 console.groupEnd();
 
-/* ---------------------------------------------------------
-   6. FOR...IN LOOP
-   Iterates over an object's own property names — useful for
-   logging or debugging a single record.
-   --------------------------------------------------------- */
+
 function logStudentDetails(student) {
   console.log(`--- Details for ${student.name} ---`);
   for (const key in student) {
@@ -103,37 +66,21 @@ function logStudentDetails(student) {
 }
 logStudentDetails(studentsData[0]);
 
-/* ---------------------------------------------------------
-   7. CLASSIC FOR LOOP
-   Simple index-based loop, printed to the console.
-   --------------------------------------------------------- */
+
 for (let i = 0; i < studentList.length; i++) {
   console.log(`${i + 1}. ${studentList[i].name} — ${studentList[i].marks} marks`);
 }
-
-/* ---------------------------------------------------------
-   8. FUNCTIONS: declaration, expression and arrow function
-   --------------------------------------------------------- */
-
-// Function declaration (hoisted, can be called before it is defined)
 function formatMarks(marks) {
   return `${marks} / 100`;
 }
-
-// Function expression (not hoisted the same way)
 const isTopScorer = function (student, highest) {
   return student.id === highest.id;
 };
-
-// Arrow function (short syntax, used heavily below)
 const toPercentage = (marks) => `${marks}%`;
 
-/* ---------------------------------------------------------
-   9. ARRAY METHODS — reduce(), filter()
-   OPERATORS: arithmetic (+ , /), comparison (>, >=)
-   --------------------------------------------------------- */
+
 function calculateSummary(list) {
-  const total = list.reduce((sum, s) => sum + s.marks, 0);       // reduce: running total
+  const total = list.reduce((sum, s) => sum + s.marks, 0);
   const average = list.length ? (total / list.length).toFixed(2) : "0.00";
 
   const highest = list.reduce(
@@ -141,19 +88,15 @@ function calculateSummary(list) {
     list[0] || { name: "-", marks: 0 }
   );
 
-  const passCount = list.filter((s) => s.getStatus() === "pass").length; // filter
+  const passCount = list.filter((s) => s.getStatus() === "pass").length;
   const failCount = list.length - passCount;
-
-  // Returned as an object so the caller can destructure it
   return { average, highest, passCount, failCount };
 }
 
-/* ---------------------------------------------------------
-   10. DESTRUCTURING (objects) + TEMPLATE LITERALS
-   --------------------------------------------------------- */
+
 function renderSummary(list) {
   const summaryEl = document.getElementById("summary");
-  const { average, highest, passCount, failCount } = calculateSummary(list); // destructuring
+  const { average, highest, passCount, failCount } = calculateSummary(list);
 
   summaryEl.innerHTML = `
     <div class="summary-box">Average: ${average}</div>
@@ -163,12 +106,9 @@ function renderSummary(list) {
   `;
 }
 
-/* ---------------------------------------------------------
-   11. CREATING A CARD
-   Destructuring + template literals + ternary operator.
-   --------------------------------------------------------- */
+
 function createCard(student) {
-  const { name, subject, marks } = student; // object destructuring
+  const { name, subject, marks } = student;
   const status = student.getStatus();
   const grade = student.grade;
 
@@ -184,10 +124,7 @@ function createCard(student) {
   return card;
 }
 
-/* ---------------------------------------------------------
-   12. FOR...OF LOOP
-   Iterates over array values (not indexes) to build the grid.
-   --------------------------------------------------------- */
+
 function renderCards(list) {
   const cardGrid = document.getElementById("cardGrid");
   cardGrid.innerHTML = "";
@@ -198,9 +135,7 @@ function renderCards(list) {
   }
 }
 
-/* ---------------------------------------------------------
-   13. ARRAY METHODS — filter() combined with LOGICAL OPERATORS
-   --------------------------------------------------------- */
+
 function applyFilters() {
   let filtered = studentList;
 
@@ -209,8 +144,6 @@ function applyFilters() {
   } else if (currentFilter === "fail") {
     filtered = filtered.filter((s) => s.getStatus() === "fail");
   }
-
-  // Logical AND (&&): only apply the search filter when there is a term
   if (searchTerm && searchTerm.length > 0) {
     filtered = filtered.filter((s) =>
       s.name.toLowerCase().includes(searchTerm)
@@ -221,48 +154,36 @@ function applyFilters() {
   renderSummary(filtered);
 }
 
-/* ---------------------------------------------------------
-   14. ARRAY METHODS — forEach()
-   Attaches a click listener to every filter button.
-   --------------------------------------------------------- */
+
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 filterButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    filterButtons.forEach((b) => b.classList.remove("active")); // forEach again
+    filterButtons.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     currentFilter = btn.dataset.filter;
     applyFilters();
   });
 });
 
-/* ---------------------------------------------------------
-   15. SEARCH INPUT — event handling with an arrow function
-   --------------------------------------------------------- */
+
 document.getElementById("searchInput").addEventListener("input", (e) => {
   searchTerm = e.target.value.toLowerCase();
   applyFilters();
 });
 
-/* ---------------------------------------------------------
-   16. ARRAY METHODS — sort()
-   Sorts a copy of the array using the spread operator so the
-   original studentList order is never lost by accident.
-   --------------------------------------------------------- */
+
 document.getElementById("sortBtn").addEventListener("click", () => {
   studentList = [...studentList].sort((a, b) =>
     sortAscending ? a.marks - b.marks : b.marks - a.marks
   );
-  sortAscending = !sortAscending; // logical NOT
+  sortAscending = !sortAscending;
   applyFilters();
 });
 
-/* ---------------------------------------------------------
-   17. INITIAL RENDER
-   --------------------------------------------------------- */
+
 document.title = DASHBOARD_TITLE;
 applyFilters();
-// Task 4 — Book class; each instance keeps its own stock.
 class Book {
   constructor(id, title, author, price, stock, category) {
     this.id = id;
@@ -276,8 +197,6 @@ class Book {
     return this.stock < 5 ? "Low stock" : "Stock sufficient";
   }
 }
-
-// Task 1 — const keeps the array reference fixed; book stock can still change.
 const catalog = [
   new Book(1, "Clean Code", "Robert C. Martin", 22.50, 8, "Programming"),
   new Book(2, "Eloquent JavaScript", "Marijn Haverbeke", 30, 6, "Programming"),
@@ -285,7 +204,7 @@ const catalog = [
   new Book(4, "Atomic Habits", "James Clear", 18, 7, "Self-Development"),
   new Book(5, "Deep Work", "Cal Newport", 20, 2, "Self-Development")
 ];
-const orders = [ // const: the incoming batch reference is not reassigned.
+const orders = [
   { id: 101, bookId: 1, quantity: 2 },
   { id: 102, bookId: 2, quantity: 3 },
   { id: 103, bookId: 3, quantity: 5 },
@@ -295,32 +214,26 @@ const orders = [ // const: the incoming batch reference is not reassigned.
   { id: 107, bookId: 5, quantity: 1 },
   { id: 108, bookId: 1, quantity: 7 }
 ];
-
-// Task 2 — validation never changes stock and safely handles a missing book.
 function validateOrder(order, books = catalog) {
-  const book = books.find((item) => item.id === order.bookId); // const: lookup result is fixed.
-  const validQuantity = Number.isInteger(order.quantity) && order.quantity > 0; // const: fixed check result.
-  const canFulfill = Boolean(book && validQuantity && book.stock >= order.quantity); // const: fixed result.
-  let reason = "Stock available"; // let: rejection checks may change the reason.
+  const book = books.find((item) => item.id === order.bookId);
+  const validQuantity = Number.isInteger(order.quantity) && order.quantity > 0;
+  const canFulfill = Boolean(book && validQuantity && book.stock >= order.quantity);
+  let reason = "Stock available";
   if (!book) reason = "Book does not exist";
   else if (!validQuantity) reason = "Quantity must be a positive integer";
   else if (book.stock < order.quantity) reason = "Insufficient stock";
   return { valid: canFulfill, message: canFulfill ? `Accepted: ${reason}` : `Rejected: ${reason}`, book };
 }
-
-// Task 4 — destructuring and a template literal produce the confirmation.
 function orderConfirmation(book, quantity) {
-  const { title, price } = book; // const: extracted values are not reassigned.
-  const message = `Order confirmed: ${quantity} x ${title} — $${(price * quantity).toFixed(2)} total.`; // const: fixed message.
+  const { title, price } = book;
+  const message = `Order confirmed: ${quantity} x ${title} — $${(price * quantity).toFixed(2)} total.`;
   console.log(message);
   return message;
 }
-
-// Task 3 — sequential validation uses the stock left by earlier orders.
 function processOrders(incomingOrders, books = catalog) {
-  const results = []; // const: append results without reassigning the array.
-  for (const order of incomingOrders) { // const: one order binding per iteration.
-    const validation = validateOrder(order, books); // const: fixed validation for this order.
+  const results = [];
+  for (const order of incomingOrders) {
+    const validation = validateOrder(order, books);
     if (validation.valid) validation.book.stock -= order.quantity;
     results.push({
       ...order,
@@ -332,28 +245,26 @@ function processOrders(incomingOrders, books = catalog) {
     });
   }
   const summary = results.map(({ id, title, quantity, status, reason, revenue, confirmation }) =>
-    ({ id, title, quantity, status, reason, revenue, confirmation })); // const: derived report reference stays fixed.
+    ({ id, title, quantity, status, reason, revenue, confirmation }));
   const totalRevenue = summary.reduce((total, order) =>
-    total + (order.status === "Fulfilled" ? order.revenue : 0), 0); // const: final calculated revenue.
+    total + (order.status === "Fulfilled" ? order.revenue : 0), 0);
   return { summary, totalRevenue };
 }
-
-// Task 5 — filter returns a new array, so sorting does not reorder the catalog.
 function lowStockReport(category, threshold, books = catalog) {
   const report = books.filter((book) => book.stock < threshold && book.category === category)
-    .sort((a, b) => a.stock - b.stock); // const: report reference is fixed.
+    .sort((a, b) => a.stock - b.stock);
   console.log(`Low-stock report: ${category}, stock < ${threshold}`);
   console.table(report);
   return report;
 }
 
 console.group("Task 2 — validation before batch processing");
-const validationTests = [orders[0], orders[3]].map((order) => validateOrder(order).message); // const: fixed test results.
+const validationTests = [orders[0], orders[3]].map((order) => validateOrder(order).message);
 validationTests.forEach((message) => console.log(message));
 console.groupEnd();
 document.getElementById("validationResults").innerHTML = validationTests.map((message) => `<li>${message}</li>`).join("");
 
-const batchReport = processOrders(orders); // const: this batch is processed once per page load.
+const batchReport = processOrders(orders);
 console.table(batchReport.summary);
 console.log(`Total revenue: $${batchReport.totalRevenue.toFixed(2)}`);
 document.getElementById("ordersBody").innerHTML = batchReport.summary.map((order) => `
@@ -366,12 +277,12 @@ document.getElementById("catalogBody").innerHTML = catalog.map((book) => `
   <tr><td>${book.title}</td><td>${book.author}</td><td>${book.category}</td>
   <td>$${book.price.toFixed(2)}</td><td>${book.stock}</td><td>${book.getStockStatus()}</td></tr>`).join("");
 
-const reportSettings = [ // const: the two required report combinations remain fixed.
+const reportSettings = [
   { category: "Programming", threshold: 5 },
   { category: "Self-Development", threshold: 6 }
 ];
 document.getElementById("stockReports").innerHTML = reportSettings.map(({ category, threshold }) => {
-  const books = lowStockReport(category, threshold); // const: fixed result for this report.
+  const books = lowStockReport(category, threshold);
   return `<div class="report"><strong>${category} — stock below ${threshold}</strong><ul>${books.length
     ? books.map((book) => `<li>${book.title}: ${book.stock} copies</li>`).join("")
     : "<li>No books match.</li>"}</ul></div>`;
