@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Workshop Registration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><a href="../index.html">Lab 6</a><span>CAMPUS / LEARNING SERIES</span><span>REGISTRATION PORTAL</span></header>
+  <main>
+    <section class="hero"><p>STUDENT WORKSHOPS · FALL SESSION</p><h1>Make room<br>for <span>what's next.</span></h1><div class="hero-bottom"><span>Pick your sessions. We’ll handle the rest.</span><b>01 — 03 / WORKSHOPS</b></div></section>
+    <div class="grid">
+      <section class="catalog"><div class="section-title"><div><small>AVAILABLE SESSIONS</small><h2>Choose workshops</h2></div><span id="selectionCount">0 / 2 selected</span></div><div id="workshops" class="cards"></div><div class="selection panel"><div><small>YOUR REGISTRATION</small><h2 id="summaryTitle">No sessions selected</h2><div id="summaryItems"></div><p id="summaryTotal">Total fee: Rs 0</p></div><button id="clear" class="outline">Clear selection</button></div></section>
+      <aside>
+        <section class="panel flow"><small>REGISTRATION FLOW</small><h2>Run your registration</h2>
+          <label>Async approach<select id="mode"><option value="callbacks">Nested callbacks</option><option value="promises">Promises</option><option value="async">Async / Await</option></select></label>
+          <label>Scenario<select id="scenario"><option value="success">Success</option><option value="full">Full workshop</option><option value="approval">Approval failure</option><option value="slowConfirmation">Delayed confirmation</option></select></label>
+          <button id="register" class="primary">Check capacity & register</button>
+          <div class="stages"><div data-stage="capacity"><span>01</span><strong>Capacity check</strong><b>Waiting</b></div><div data-stage="approval"><span>02</span><strong>Approval</strong><b>Waiting</b></div><div data-stage="confirmation"><span>03</span><strong>Confirmation</strong><b>Waiting</b></div></div>
+          <p id="status" aria-live="polite">Select one or two workshops to continue.</p>
+        </section>
+        <section class="panel log"><div class="log-head"><div><small>ACTIVITY</small><h2>Progress timeline</h2></div><button id="clearLog" class="outline">Clear</button></div><ol id="timeline" aria-live="polite"></ol></section>
+        <section id="confirmation" class="panel confirmation hidden"></section>
+      </aside>
+    </div>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
